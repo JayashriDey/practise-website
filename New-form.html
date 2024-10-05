@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Width Header</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            width: 100%;
+            background-color: #F51717;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .row{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+        .business-container{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 810px;
+            padding: 20px 5px 16px 20px;
+            margin: 36px 15px 0 15px;
+        
+            background-color: #FFFFFF;
+            /* border: 1px solid #D4D4D4; */
+            border-radius: 8px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.7) inset;
+            position: relative;
+        }
+        .business-container img{
+            width: 40%;
+            height: 45%;
+            margin: 55px 38px 0px -5px;
+            border: 1px solid #cfcfcf;
+            border-radius: 60px;
+            /* border-style: inset; */
+            box-shadow: 4px 5px 0px 0px #c2c2c2;
+        }
+        .timing-container, .service-container{
+            margin: 37px 15px 0 15px;
+            padding: 30px 5px 12px 20px;
+            background-color: #FFFFFF;
+            /* border: 1px solid #D4D4D4; */
+            border-radius: 8px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.7) inset;
+            position: relative;
+        }
+        .specialization-container-column{
+            margin: 37px 15px 20px 15px;
+            padding: 16px 6px 0px 6px;
+            background-color: #FFFFFF;
+            /* border: 1px solid #D4D4D4; */
+            border-radius: 8px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.7) inset;
+            position: relative;
+        }
+        .business-container h2, .timing-container h2, .service-container h2, .specialization-container-column h2 {
+            background-color: #F51717;
+            color: #FFF;
+            padding: 8px 25px;
+            font-size: 17px;
+            font-weight: bold;
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            border-radius: 30px;
+            /* border-bottom-left-radius: 0; */
+            border-bottom-right-radius: 0;
+            box-shadow: 6px 6px 4px 0px rgba(26, 26, 26, 0.4);
+        }
+        .info-field, .timing-field {
+            line-height: 25px;
+        }
+        .info-field label, .timing-field label, .specialization-field label{
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+           .row{
+            display: flex;
+            flex-direction: column;
+           }
+           .business-container{
+            display: flex;
+            flex-direction: column;
+            width: 92%;
+           }
+           .business-container img{
+            margin-top: 10px;
+            margin-bottom: 10px;
+           }
+        }
+        @media (max-width: 1286px) {
+            html, body {
+                overflow-x: hidden;
+            }
+        }
+      
+      .heading {
+  text-align: center;
+  font-size: 2em;
+  letter-spacing: 1px;
+  padding-top: 20px;
+  color: #000;
+  font-weight: bold;
+}
+
+.gallery-image {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery-image img {
+  height: 250px;
+  width: 350px;
+  transform: scale(1.0);
+  transition: transform 0.4s ease;
+}
+
+.img-box {
+    box-sizing: content-box;
+    margin: 11px;
+    height: 240px;
+    width: 305px;
+    overflow: hidden;
+    display: inline-block;
+    color: white;
+    position: relative;
+    background-color: white;
+    box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.img-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 2px 40px #d7dfe2;
+}
+.caption {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  opacity: 0.0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.transparent-box {
+  height: 250px;
+  width: 350px;
+  background-color:rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.img-box:hover img { 
+  transform: scale(1.1);
+}
+
+.img-box:hover .transparent-box {
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+.img-box:hover .caption {
+  transform: translateY(-20px);
+  opacity: 1.0;
+}
+
+.img-box:hover {
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <header class="head">
+        <h1>Preview Details</h1>
+    </header>
+    <div class="row">
+        <div class="business-container">
+            <h2>Personal Info</h2>
+                <img src="https://www.company.com/images/companyLogocropped.png" alt="logo">
+            <div class="form">
+                <div class="info-field">
+                    <label for="org-name">Organisation Name:</label>
+                    <span id="org-name">company International</span>
+                </div>
+                <div class="info-field">
+                    <label for="business-type">Business Type:</label>
+                    <span id="business-type">Manufacturing</span>
+                </div>
+                <div class="info-field">
+                    <label for="reg-number">Registration Number:</label>
+                    <span id="reg-number">123456789</span>
+                </div>
+                <div class="info-field">
+                    <label for="email">Email:</label>
+                    <span id="email">info@company.com</span>
+                </div>
+                <div class="info-field">
+                    <label for="address">Address:</label>
+                    <span id="address">Newtown Ecospace Kolkata, West Bengal</span>
+                </div>
+                <div class="info-field">
+                    <label for="pin-code">Pin Code:</label>
+                    <span id="pin-code">567890</span>
+                </div>
+                <div class="info-field">
+                    <label for="state">State:</label>
+                    <span id="state">West Bengal</span>
+                </div>
+                <div class="info-field">
+                    <label for="district">District:</label>
+                    <span id="district">24 PGS (N)</span>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="timing-container">
+                <h2>Business Timing</h2>
+                <div class="timing-field">
+                    <label for="office-days">Office Days:</label>
+                    <span id="office-days">Monday to Friday</span>
+                </div>
+                <div class="timing-field">
+                    <label for="office-timings">Office Timings:</label>
+                    <span id="office-timings">9:00 AM - 6:00 PM</span>
+                </div>
+                <div class="timing-field">
+                    <label for="closed-day">Closed Day:</label>
+                    <span id="closed-day">Saturday and Sunday</span>
+                </div>
+                <div class="timing-field">
+                    <label for="note">Note:</label>
+                    <span id="note">Open on request during holidays</span>
+                </div>
+            </div>
+            <div class="service-container">
+                <h2>Services</h2>
+                <label>
+                    <input type="checkbox" name="service" value="home-delivery" checked disabled> Home Delivery
+                </label>
+                <label>
+                    <input type="checkbox" name="service" value="roadside-assistance" checked disabled> Roadside Assistance
+                </label>
+                <label>
+                    <input type="checkbox" name="service" value="advance-booking" disabled> Advance Booking
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="column">
+        <div class="specialization-container">
+            <h2>Specialization</h2>
+                <img src="file:///F:/Jayashri/practise/assets/images/logos.jpg" alt="logo" width="10%" height="10%">
+            <div class="form" style="padding: 20px 5px 16px 20px;">
+                <div class="info-field">
+                    <label for="org-name">Title:</label>
+                    <span id="org-name">Designer</span>
+                </div>
+                <div class="info-field">
+                    <label for="business-type">Description:</label>
+                    <span id="business-type">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore soluta mollitia iste laboriosam distinctio iure, adipisci sunt at quia odit minus necessitatibus velit fuga officiis eligendi nisi deserunt consectetur aliquam.</span>
+                </div>
+            </div>
+        <hr>
+                <img src="file:///F:/Jayashri/practise/assets/images/logos.jpg" alt="logo" width="10%" height="10%">
+            <div class="form" style="padding: 20px 5px 16px 20px;">
+                <div class="info-field">
+                    <label for="org-name">Title:</label>
+                    <span id="org-name">Designer</span>
+                </div>
+                <div class="info-field">
+                    <label for="business-type">Description:</label>
+                    <span id="business-type">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore soluta mollitia iste laboriosam distinctio iure, adipisci sunt at quia odit minus necessitatibus velit fuga officiis eligendi nisi deserunt consectetur aliquam.</span>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="specialization-container-column">
+        <h2>Specialization</h2>
+        <div class="row">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/014/393/714/small_2x/fire-logo-design-illustration-and-fire-symbol-free-vector.jpg" alt="logo" width="8%" height="8%">
+            <div class="form" style="padding: 20px 0px 16px 20px;">
+                <div class="info-field">
+                    <label for="org-name">Title:</label>
+                    <span id="org-name">Designer</span>
+                </div>
+                <div class="info-field">
+                    <label for="business-type">Description:</label>
+                    <span id="business-type">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore soluta mollitia iste laboriosam distinctio iure, adipisci sunt at quia odit minus necessitatibus velit fuga officiis eligendi nisi deserunt consectetur aliquam.</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/014/393/714/small_2x/fire-logo-design-illustration-and-fire-symbol-free-vector.jpg" alt="logo" width="8%" height="8%">
+            <div class="form" style="padding: 20px 0px 16px 20px;">
+                <div class="info-field">
+                    <label for="org-name">Title:</label>
+                    <span id="org-name">Architecture</span>
+                </div>
+                <div class="info-field">
+                    <label for="business-type">Description:</label>
+                    <span id="business-type">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore soluta mollitia iste laboriosam distinctio iure, adipisci sunt at quia odit minus necessitatibus velit fuga officiis eligendi nisi deserunt consectetur aliquam.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  <p class="heading">Our Models</p>
+    <div class="gallery-image">
+      <div class="img-box">
+        <img src="https://spn-sta.spinny.com/blog/20221004191046/Hyundai-Venue-2022.jpg?compress=true&quality=80&w=1200&dpr=2.6" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Latest model with high speed</p>
+          </div>
+        </div> 
+      </div>
+      <div class="img-box">
+        <img src="https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Stylish and gorgeous</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-box">
+        <img src="https://d2m3nfprmhqjvd.cloudfront.net/blog/20221028180155/Spinny-Assured-Kia-Carens-1160x653.jpg" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Luxurios and bold</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-box">
+        <img src="https://img.etimg.com/thumb/msid-100494040,width-480,height-360,imgsize-83502,resizemode-75/maruti-suzuki-jimny.jpg" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Luxurios and bold</p>
+          </div>
+        </div>
+      </div>
+<div class="footer" style="background-color: #F51717; height: 40px">
+</div>
+</body>
+</html>

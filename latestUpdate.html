@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body,html {
+        margin: 0;
+        padding: 0;
+        font-family: Poppins, sans-serif;
+        /* overflow-y: hidden;
+        overflow-x: hidden; */
+        
+    }
+
+    /* topbar */
+    .topbar {
+        background-color: #045280;
+        color: rgb(252, 252, 252);
+        padding: 10px 0;
+    }
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .column-left, .column-right {
+        display: flex;
+        align-items: center;
+    }
+    .top-contact-details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .top-contact-details li {
+        display: flex;
+        align-items: center;
+    }
+    .top-contact-details a {
+        color: white;
+        margin-left: 5px;
+        text-decoration: none;
+    }
+    .social-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+    .social-links li {
+        border-right: 1px solid white;
+    }
+    .social-links li:last-child {
+        border-right: none;
+    }
+    .social-link {
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 90%;
+            padding: 0 20px;
+        }
+        .row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .column-left, .column-right {
+            margin-bottom: 10px;
+        }
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links li {
+            border-right: none;
+            margin-right: 10px;
+        }
+    }
+
+    /*nav*/
+        .navbar {
+            background-color: #fafafa;
+            color: #151515;
+          }
+          .navbar-brand img{
+            margin-top: -16px;
+          }
+          .container1 {
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            padding: 10px 20px;
+          }
+          .logo {
+            font-size: 24px;
+            margin-top: 10px;
+          }
+          .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            margin-left: 30%;
+          }
+          .nav-links li {
+            margin-right: 40px;
+          }
+          .nav-links li a {
+            color: #0C0B0B;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 16px;
+          }
+          .nav-links li a:hover {
+            color: #FFA500;
+          }
+          .dropdown {
+            position: relative;
+          }
+          .dropdown input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+          }
+          .dropdown-content {
+            display: none;
+            border-radius: 5px;
+            position: absolute;
+            /*background-color: #F0F0F0;*/
+            min-width: 320px;
+            z-index: 1;
+            background-color: #F9F9F9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          }
+          .dropdown-content a {
+            color: #161616;
+            border-bottom: 1px solid #6D6D6D;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+          }
+          .dropdown-content a:hover {
+            background-color: #F1F1F1;
+          }
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+          .get-started-btn {
+            padding: 10px 20px;
+            background-color: #FFA500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          .get-started-btn:hover {
+            background-color: #FF7F00;
+          }
+
+          .menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+          }
+
+          @media only screen and (max-width: 768px) {
+              .menu-btn {
+                  display: block;
+              }
+
+              .nav-links {
+                  display: none;
+                  flex-direction: column;
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  width: 100%;
+                  background-color: #DFDFDF;
+                  transition: all 0.3s ease;
+              }
+
+              .nav-links.active {
+                  display: flex;
+              }
+
+              .nav-links li {
+                  width: 100%;
+                  text-align: center;
+              }
+
+              .nav-links li.dropdown {
+                  position: relative;
+              }
+
+              .nav-links li.dropdown .dropdown-content {
+                  position: static;
+                  display: none;
+                  flex-direction: column;
+                  align-items: center;
+              }
+
+              .nav-links li.dropdown:hover .dropdown-content {
+                  display: flex;
+              }
+          }
+
+          /* update sec */
+          .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  overflow: hidden;
+  box-shadow: 0px 2px 20px #d7dfe2;
+  background: white;
+  border-radius: 0.5rem;
+  position: relative;
+  width: 350px;
+  margin: 2rem;
+  transition: 250ms all ease-in-out;
+  /* cursor: pointer; */
+}
+
+/* .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 2px 40px #d7dfe2;
+} */
+
+.banner-img {
+  position: absolute;
+  object-fit: cover;
+  height: 14rem;
+  width: 100%;
+}
+
+.category-tag {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  background: red;
+  padding: 0.5rem 1.3rem 0.5rem 1rem;
+  text-transform: uppercase;
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  border-radius: 0 2rem 2rem 0;
+}
+
+.popular {
+  background: #ef257a;
+}
+
+.technology {
+  background: #651fff;
+}
+
+.psychology {
+  background: #e85808;
+}
+
+.card-body {
+  margin: 15rem 1rem 1rem 1rem;
+}
+
+.blog-hashtag {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4d97b2;
+}
+
+.blog-title {
+  line-height: 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.blog-description {
+  color: #616b74;
+  font-size: 0.9rem;
+}
+
+.card-profile {
+  display: flex;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-profile-info {
+  margin-left: 1rem;
+}
+
+.profile-name {
+  font-size: 1rem;
+}
+
+.profile-followers {
+  color: #616b74;
+  font-size: 0.9rem;
+}
+
+/* banner */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px; 
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)),url('https://www.shutterstock.com/image-photo/young-beautiful-asian-woman-getting-600nw-2165608335.jpg'); 
+  background-size: cover;
+  background-position: center;
+  color: white; 
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner h1 {
+  font-size: 36px;
+  margin-top: 10px;
+}
+
+.banner p {
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+
+ /*footer*/
+    footer {
+            background-color: #141414;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+    .container5 {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px; 
+    }
+
+    .logo2 {
+        flex: 1; 
+        margin-right: 20px;
+    }
+
+    .logo2 img {
+        height: 50px;
+    }
+
+    .social-icons2 {
+        flex: 1; 
+        display: flex;
+        justify-content: flex-end; 
+    }
+
+    .social-icons2 img {
+        width: 30px;
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .social-icons2 a:hover img {
+        transform: scale(1.2);
+    }
+
+    .menu {
+        text-align: center;
+        margin-top: 20px; 
+    }
+
+    .menu a {
+        color: #fff;
+        text-decoration: none;
+        margin: 7px 15px;
+        font-size: 16px;
+        transition: color 0.1s ease;
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+
+    .menu a:hover {
+        color: #0f0f0f;
+        background: rgba(194, 194, 194, 0.7);
+    }
+
+    .menu a.active {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu a:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    .copyright {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+    .copyright a {
+        color: #fff;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .copyright a:hover {
+        opacity: 1;
+    }
+
+    /* Media queries for responsive design */
+    @media (max-width: 768px) {
+        .container5 {
+            flex-direction: column; 
+            align-items: stretch;
+            padding: 0 10px; 
+        }
+
+        .logo2,
+        .social-icons2 {
+            margin-right: 0; 
+            margin-bottom: 20px; 
+        }
+
+        .menu {
+            margin-top: 0; 
+        }
+    }
+</style>
+</head>
+<body>
+     <!-- topbar section  -->
+     <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="column-left">
+                    <ul class="top-contact-details">
+                        <li>
+                            <i class="fa fa-map-marker" style="color: #fff;"></i>
+                            <a href="#" class="text-white">Ecospace, Newtown Kolkata</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope" style="color: #fff;"></i>
+                            <a href="#" class="text-white">abc@company.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column-right">
+                    <ul class="social-links">
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- nav -->
+    <nav class="navbar">
+        <div class="container1">
+          <div class="logo">
+            <a class="navbar-brand" href="index.html">
+                <img src="./assets/images/logo.png" alt="" height="45" />
+            </a>
+          </div>
+          <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+          </div>
+          <ul class="nav-links" id="navbarSupportedContent">
+            <li><a href="landingPage.html">Home</a></li>
+            <li><a href="aboutPage.html">About</a></li>
+            <!-- <li class="dropdown">
+              <a href="#" onclick="toggleDropdown('products')">Products</a>
+              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown-content" id="products" style="min-width: 170px;">
+                <a href="productPage.html">Product 1</a>
+                <a href="productPage.html">Product 2</a>
+                <a href="productPage.html">Product 3</a>
+              </div>
+            </li> -->
+            <li class="dropdown">
+              <a href="#" onclick="toggleDropdown('updates')">Latest Updates</a>
+              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown-content" id="updates" style="min-width: 170px;">
+                <a href="#">Update 1</a>
+                <a href="#">Update 2</a>
+                <a href="#">Update 3</a>
+              </div>
+            </li>
+            <li><a href="contactUs.html">Contact Us</a></li>
+          </ul>
+          <!-- <button class="get-started-btn">Get Started</button> -->
+        </div>
+      </nav>
+    <!-- nav -->
+
+    <!-- banner -->
+    <div class="banner">
+        <h1> Lets gear up !</h1>
+        <p>All your GPS tracking needs for <mark style="background-color: #f7ab4b;"><em>car protection & road safety</em></mark></p>
+    </div>
+    <!-- banner -->
+
+    <!-- update sec -->
+    <h1 style="text-align: center;margin-top: 45px;">Latest Updates</h1>
+    <div class="wrapper">
+        <div class="card">
+          <div class="card-banner">
+            <p class="category-tag popular">Update 1</p>
+            <img class="banner-img" src="assets\images\image1.jpg" alt=''>
+          </div>
+          <div class="card-body">
+            <p class="blog-hashtag">#Cars #Driving</p>
+            <h2 class="blog-title">Everything You Need, All in One</h2>
+            <p class="blog-description">Connected vehicle technology defines the future of mobility</p>
+    
+            
+          </div>
+        </div>
+    
+        <div class="card">
+          <div class="card-banner">
+            <p class="category-tag technology">Update 2</p>
+            <img class="banner-img" src="assets\images\image2.jpg" alt=''>
+          </div>
+          <div class="card-body">
+            <p class="blog-hashtag">#Cars #Driving</p>
+            <h2 class="blog-title">Real-Time GPS Tracking</h2>
+            <p class="blog-description">Use geo-fence zones to receive notifications when a driver enters or exits an area.</p>
+    
+            
+          </div>
+        </div>
+    
+        <div class="card">
+          <div class="card-banner">
+            <p class="category-tag psychology">Update 3</p>
+            <img class="banner-img" src='assets\images\image3.jpg' alt=''>
+          </div>
+          <div class="card-body">
+            <p class="blog-hashtag">#Cars #Driving</p>
+            <h2 class="blog-title">Track Beyond the Car</h2>
+            <p class="blog-description">Optional accessory designed for Vyncs devices helps hide your Vyncs device</p>
+          </div>
+        </div>
+
+        <div class="card">
+            <div class="card-banner">
+              <p class="category-tag popular">Update 1</p>
+              <img class="banner-img" src="assets\images\image1.jpg" alt=''>
+            </div>
+            <div class="card-body">
+              <p class="blog-hashtag">#Cars #Driving</p>
+              <h2 class="blog-title">Everything You Need, All in One</h2>
+              <p class="blog-description">Connected vehicle technology defines the future of mobility</p>
+      
+              
+            </div>
+          </div>
+      
+          <div class="card">
+            <div class="card-banner">
+              <p class="category-tag technology">Update 2</p>
+              <img class="banner-img" src="assets\images\image2.jpg" alt=''>
+            </div>
+            <div class="card-body">
+              <p class="blog-hashtag">#Cars #Driving</p>
+              <h2 class="blog-title">Real-Time GPS Tracking</h2>
+              <p class="blog-description">Use geo-fence zones to receive notifications when a driver enters or exits an area.</p>
+      
+              
+            </div>
+          </div>
+      
+          <div class="card">
+            <div class="card-banner">
+              <p class="category-tag psychology">Update 3</p>
+              <img class="banner-img" src='assets\images\image3.jpg' alt=''>
+            </div>
+            <div class="card-body">
+              <p class="blog-hashtag">#Cars #Driving</p>
+              <h2 class="blog-title">Track Beyond the Car</h2>
+              <p class="blog-description">Optional accessory designed for Vyncs devices helps hide your Vyncs device</p>
+            </div>
+          </div>
+    
+    </div>
+    <!-- update sec -->
+
+     <!--footer-->
+<footer>
+    <div class="container5">
+        <div class="logo2">
+            <img src="assets\images\logo.png" alt="Logo">
+        </div>
+        <div class="social-icons2">
+            <a href="#"><img src="assets\images\youtube.png" alt="youtube"></a>
+            <a href="#"><img src="assets\images\facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="assets\images\whatsapp.png" alt="whatsapp"></a>
+            <a href="#"><img src="assets\images\instagram.png" alt="Instagram"></a>
+        </div>
+    </div>
+    <div class="menu">
+        <a href="landingPage.html">Home</a>
+        <a href="aboutPage.html">About</a>
+        <!-- <a href="productPage.html">Products</a> -->
+        <a href="latestUpdate.html">Latest Updates</a>
+        <a href="contactUs.html">Contact Us</a>
+    </div>
+    <hr>
+    <div class="copyright">
+        &copy; 2024 company LLC . All rights reserved.
+    </div>
+</footer>
+<!--footer-->
+
+
+<script>
+    function toggleMenu() {
+        const navbarLinks = document.getElementById('navbarSupportedContent');
+        navbarLinks.classList.toggle('active');
+    }
+
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+</body>
+</html>

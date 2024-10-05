@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login Form</title>
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(#ada6a6, #000000);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%; 
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: calc(100% - 30px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding-right: 30px;
+    transition: all 0.5s;
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder {
+    text-align: left;
+    padding-left: 10px;
+    transition: all 0.5s;
+}
+
+.login-form input[type="text"]+.fa,
+.login-form input[type="password"]+.fa {
+    position: relative;
+    left: -25px; 
+    top: 2px; 
+    color: #8f8f8f;
+    font-size: 18px;
+}
+
+.login-form input[type="submit"] {
+    width: 25%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-link {
+    margin-top: 10px;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.login-form input:hover,
+.login-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    transform: scale(1.05);
+}
+
+.forgot-password-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-form input[type="submit"]:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+}
+
+.login-form {
+    margin-top: 20px; 
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+    .login-container {
+        width: 80%; 
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .login-container {
+        width: 80%; 
+    }
+}
+
+@media only screen and (min-width: 344px) {
+    .login-container {
+        width: 80%; 
+    }
+    .login-form{
+        width: 105%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="assets\images\login1.jpg" alt="Logo" width="80">
+        </div>
+        <form class="login-form" action="#" method="POST">
+            <div style="position: relative;">
+                <input type="text" name="username" placeholder="Username" required>
+                <i class="fa fa-user"></i>
+            </div>
+            <div style="position: relative;">
+                <input type="password" name="password" placeholder="Password" required>
+                <i class="fa fa-lock"></i>
+            </div>
+            <div style="position: relative; margin: 0px 0px 0px -10px;">
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+                <a href="forgotpass.html" style="color: red; margin-left: 45px;">Forgot password?</a>
+            </div>
+            <br><br>
+            <div class="btn-container">
+                <a href="landingPage.html" style="text-decoration: none; color: #fff;"><button type="submit" class="btn">Login</a></button>
+            </div>
+        </form>
+        <br>
+        <div class="signup-link">
+            <i>Don't have an account? <a href="signup.html">Sign up</a></i>
+        </div>
+    </div>
+</body>
+</html>

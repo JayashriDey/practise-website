@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-width Map</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body,html {
+        margin: 0;
+        padding: 0;
+        font-family: Poppins, sans-serif;
+        /* overflow-y: hidden;
+        overflow-x: hidden; */
+        
+    }
+
+    /* topbar */
+    .topbar {
+        background-color: #045280;
+        color: rgb(252, 252, 252);
+        padding: 10px 0;
+    }
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .row::before{
+      content: none;
+    }
+    .row::after{
+      content: none;
+    }
+    .column-left, .column-right {
+        display: flex;
+        align-items: center;
+    }
+    .top-contact-details {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .top-contact-details li {
+        display: flex;
+        align-items: center;
+    }
+    .top-contact-details a {
+        color: white;
+        margin-left: 5px;
+        text-decoration: none;
+    }
+    .social-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+    .social-links li {
+        border-right: 1px solid white;
+    }
+    .social-links li:last-child {
+        border-right: none;
+    }
+    .social-link {
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 90%;
+            padding: 0 20px;
+        }
+        .row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .column-left, .column-right {
+            margin-bottom: 10px;
+        }
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links li {
+            border-right: none;
+            margin-right: 10px;
+        }
+    }
+
+    /*nav*/
+    .navbar {
+            background-color: #fafafa;
+            color: #151515;
+          }
+          .container1 {
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            padding: 10px 20px;
+          }
+          .logo {
+            font-size: 24px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+          }
+          .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            margin-left: 30%;
+          }
+          .nav-links li {
+            margin-right: 40px;
+          }
+          .nav-links li a {
+            color: #0C0B0B;
+            text-decoration: none;
+            transition: color 0.3s ease;
+          }
+          .nav-links li a:hover {
+            color: #FFA500;
+          }
+          .dropdown {
+            position: relative;
+          }
+          .dropdown input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+          }
+          .dropdown-content {
+            display: none;
+            border-radius: 5px;
+            position: absolute;
+            /*background-color: #F0F0F0;*/
+            min-width: 320px;
+            z-index: 1;
+            background-color: #F9F9F9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          }
+          .dropdown-content a {
+            color: #161616;
+            border-bottom: 1px solid #6D6D6D;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+          }
+          .dropdown-content a:hover {
+            background-color: #F1F1F1;
+          }
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+          .get-started-btn {
+            padding: 10px 20px;
+            background-color: #FFA500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          .get-started-btn:hover {
+            background-color: #FF7F00;
+          }
+
+          .menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+          }
+
+          @media only screen and (max-width: 768px) {
+              .menu-btn {
+                  display: block;
+              }
+
+              .nav-links {
+                  display: none;
+                  flex-direction: column;
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  width: 100%;
+                  background-color: #DFDFDF;
+                  transition: all 0.3s ease;
+              }
+
+              .nav-links.active {
+                  display: flex;
+              }
+
+              .nav-links li {
+                  width: 100%;
+                  text-align: center;
+              }
+
+              .nav-links li.dropdown {
+                  position: relative;
+              }
+
+              .nav-links li.dropdown .dropdown-content {
+                  position: static;
+                  display: none;
+                  flex-direction: column;
+                  align-items: center;
+              }
+
+              .nav-links li.dropdown:hover .dropdown-content {
+                  display: flex;
+              }
+          }
+
+    
+    #map-container {
+        width: 100%;
+        height: 400px; 
+        background-color: #f0f0f0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* search title */
+    .container-search {
+        display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 70px;
+    width: 90%;
+  }
+
+  .icons i{
+    margin-right: 2px;
+    border-radius: 50%;
+    padding: 15px;
+    border: 1px solid;
+    cursor: pointer;
+  }
+
+   /* .icons :hover {
+      background-color: rgb(248, 178, 73);
+      color: rgb(0, 0, 0);
+      transition: transform 0.3s ease;
+      transform: scale(1.2);
+      border-color: rgb(248, 178, 73);
+  } */
+  .spacer {
+    flex-grow: 1; 
+  }
+
+  .dropdown-opt {
+    position: relative;
+  
+  }
+
+  .dropdown-opt select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor:pointer;
+    width: 200px;
+  }
+
+  .dropdown-opt i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  /*search body*/
+ .container-sb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-top: 25px; */
+}
+
+.box {
+  width: 90%; /* Adjusted width for better spacing */
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin: 11px auto; /* Adjusted margin to center the boxes */
+  border: 1px solid #dbdbdb;
+}
+
+.box:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.box img {
+  width: 26%;
+  height: 12%;
+  border-radius: 2%;
+  margin: 10px 10px 10px 10px;
+    /* margin-right: 20px; */
+  /* margin-right: 20px; */
+  /*border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;*/
+}
+
+.box .content {
+  flex-grow: 1;
+  margin: 18px 0px 12px 13px;
+}
+
+.box p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+  
+ .ratings {
+    color: #ffbc00;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 0px; */
+}
+  
+  .star {
+    width: 116px;
+    height: 49px;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/009/663/928/non_2x/5-star-rating-review-star-transparent-free-png.png);
+    background-size: cover;
+    margin-left: -83%;
+    margin-top: -3%;
+}
+
+.content .old-price{
+  color: #545454;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin: 0px 0px 0px 12px;
+    font-size: smaller;
+}
+/* .dropdown-rating {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content-rating {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-rating:hover .dropdown-content-rating {
+    display: block;
+  } */
+.price {
+  display: block;
+  font-weight: bold;
+  color: #db0707;
+  margin-top: 10px;
+}
+
+.box .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 20%;
+    gap: 20px;
+    margin-right: 15px;
+}
+
+.box .buttons button {
+  padding: 10px 0px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+}
+
+.box-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.2);
+}
+
+.pagination {
+  margin: 70px 0px 30px 0px;
+  text-align: center;
+}
+
+.pagination a {
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+.pagination .prev,
+.pagination .next {
+    background-color: #c3c1c1;
+    border: 0px;
+    border-radius: 50px;
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+    background-color: #01394b;
+    color: #fff;
+}
+
+.pagination .active {
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+}
+
+@media screen and (max-width: 480px) {
+    .pagination a {
+        padding: 6px 12px;
+    }
+}
+
+
+/* media queries */
+@media screen and (max-width: 768px) {
+    /* .container-sb{
+      padding: auto;
+      margin: auto;
+    }*/
+    .container-search{
+      display: flex;
+      flex-direction: column;
+      margin: 0px 0px 0px 19px;
+    }
+    .box{
+      display: flex;
+      flex-direction: column;
+      width: 93%;
+      margin-left: 15px;
+    } 
+    .ratings{
+      margin-left: 39px;
+    }
+
+    .ratings .rate{
+      margin-top: 12px;
+    }
+    .box img{
+      width: 330px;
+    }
+    .box .buttons{
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      margin-bottom: 15px;
+    }
+    /* .box {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .box .buttons {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+    .content h3{
+      align-items: center;
+    }
+    .box img{
+      width: 100%;
+      border-top-right-radius: 7px;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      margin-top: 0px;
+    } */
+}
+/* CSS for tablets */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .box{
+      display: flex;
+      flex-direction: column;
+    }
+    .container-search{
+      margin-left: 42px;
+    }
+    .box .buttons{
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      margin-bottom: 15px;
+    }
+    .box img{
+      width: 96%;
+    }
+}
+
+        /*footer*/
+    footer {
+        background-color: #141414;
+        color: #fff;
+        padding: 20px 0;
+        width: 100%;
+    }
+
+    .container5 {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px; 
+    }
+
+    .logo2 {
+        flex: 1; 
+        margin-right: 20px;
+    }
+
+    .logo2 img {
+        height: 50px;
+    }
+
+    .social-icons2 {
+        flex: 1; 
+        display: flex;
+        justify-content: flex-end; 
+    }
+
+    .social-icons2 img {
+        width: 30px;
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .social-icons2 a:hover img {
+        transform: scale(1.2);
+    }
+
+    .menu {
+        text-align: center;
+        margin-top: 20px; 
+    }
+
+    .menu a {
+        color: #fff;
+        text-decoration: none;
+        margin: 7px 15px;
+        font-size: 16px;
+        transition: color 0.1s ease;
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+
+    .menu a:hover {
+        color: #0f0f0f;
+        background: rgba(194, 194, 194, 0.7);
+    }
+
+    .menu a.active {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu a:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    .copyright {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+    .copyright a {
+        color: #fff;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .copyright a:hover {
+        opacity: 1;
+    }
+
+    /* Media queries for responsive design */
+    @media (max-width: 768px) {
+        .container5 {
+            flex-direction: column; 
+            align-items: stretch;
+            padding: 0 10px; 
+        }
+
+        .logo2,
+        .social-icons2 {
+            margin-right: 0; 
+            margin-bottom: 20px; 
+        }
+
+        .menu {
+            margin-top: 0; 
+        }
+    }
+</style>
+</head>
+<body>
+    <!-- topbar section  -->
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="column-left">
+                    <ul class="top-contact-details">
+                        <li>
+                            <i class="fa fa-map-marker" style="color: #fff;"></i>
+                            <a href="#" class="text-white">Ecospace, Newtown Kolkata</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope" style="color: #fff;"></i>
+                            <a href="#" class="text-white">abc@company.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column-right">
+                    <ul class="social-links">
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- nav -->
+    <nav class="navbar">
+        <div class="container1">
+          <div class="logo">
+            <a class="navbar-brand" href="index.html">
+                <img src="./assets/images/logo.png" alt="" height="45" />
+            </a>
+          </div>
+          <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+          </div>
+          <ul class="nav-links" id="navbarSupportedContent">
+            <li><a href="landingPage.html">Home</a></li>
+            <li><a href="aboutPage.html">About</a></li>
+            <!-- <li class="dropdown">
+              <a href="#" onclick="toggleDropdown('products')">Products</a>
+              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown-content" id="products" style="min-width: 170px;">
+                <a href="productPage.html">Product 1</a>
+                <a href="productPage.html">Product 2</a>
+                <a href="productPage.html">Product 3</a>
+              </div>
+            </li> -->
+            <li class="dropdown">
+              <a href="#" onclick="toggleDropdown('updates')">Latest Updates</a>
+              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown-content" id="updates" style="min-width: 170px;">
+                <a href="latestUpdate.html">Update 1</a>
+                <a href="latestUpdate.html">Update 2</a>
+                <a href="latestUpdate.html">Update 3</a>
+              </div>
+            </li>
+            <li><a href="contactUs.html">Contact Us</a></li>
+          </ul>
+          <!-- <button class="get-started-btn">Get Started</button> -->
+        </div>
+      </nav>
+    <!-- nav -->
+
+    <!-- map section -->
+    <!-- <div id="map-container">
+        <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117130.00379922547!2d-118.41046819397785!3d34.02016129914608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf10d85bf5ea!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1594388137673!5m2!1sen!2sin" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div> -->
+
+    <!-- search section -->
+    <div class="container-search">
+        <div class="icons">
+          <!-- <i class="fa fa-th-large" style="margin-right: 15px;"></i>
+          <i class="fa fa-list-ul"></i> -->
+          <p>1-4 of over 20 results for <span style="color: #ca0d0d;">"Cars"</span></p>
+        </div>
+        <div class="spacer"></div>
+        <div class="dropdown-opt">
+            <select name="filters" id="filters" onchange="filterResults()">
+                <option value="all">All</option>
+                <option value="priceLowToHigh">Price Low to High</option>
+                <option value="priceHighToLow">Price High to Low</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- search body -->
+    <div class="container-sb">
+      <div class="box">
+          <img src="assets\images\image1.jpg" alt="placeholder image">
+          <div class="content">
+              <h3 style="margin:-10px 0px 5px 0px;">Product Name</h3>
+              <p style="margin-right:20px">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet, eius. Voluptatem laborum exercitationem non ratione rerum nesciunt architecto. Nobis temporibus, nisi magni molestias nesciunt incidunt neque obcaecati? Ipsam, impedit optio.<span><a href="#" style="text-decoration:none">...see more</a></span></p>
+              <div class="ratings">
+                  <span class="star"></span>
+                  <span class="rate" style="font-weight: 600;color: #01195c;">3.9/5</span>
+                  <!-- <i class="fa fa-chevron-down" style="color: #464646; cursor: pointer;"></i> -->
+                  <!-- <div class="dropdown-rating">
+                    <i class="fa fa-chevron-down" style="color: #464646; cursor: pointer;"></i>
+                    <div class="dropdown-content-rating">
+                      <a href="#">Option 1</a>
+                      <a href="#">Option 2</a>
+                      <a href="#">Option 3</a>
+                    </div>
+                  </div> -->
+              </div>
+            <span class="price">$10,000<span class="old-price"><i>M.R.P: $20,000</i></span></span> 
+          </div>
+          <div class="buttons">
+              <button class="box-btn"><a href="New-form.html" style="text-decoration: none; color: #fff;">View Details</a></button>
+              <button class="box-btn" style="background-color: #ff9900;">Add to Cart</button>
+              <button class="box-btn buy-now-btn" style="background-color: #049c11;"><a href="#" style="text-decoration: none; color: #fff;">Book Now</a></button>
+          </div>
+      </div>
+      <div class="container-sb">
+        <div class="box">
+            <img src="assets\images\image2.jpg" alt="placeholder image">
+            <div class="content">
+                <h3 style="margin:-10px 0px 5px 0px;">Product Name</h3>
+                <p style="margin-right:20px">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet, eius. Voluptatem laborum exercitationem non ratione rerum nesciunt architecto. Nobis temporibus, nisi magni molestias nesciunt incidunt neque obcaecati? Ipsam, impedit optio.<span><a href="#" style="text-decoration:none">...see more</a></span></p>
+                <div class="ratings">
+                    <span class="star"></span>
+                    <span class="rate" style="font-weight: 600;color: #01195c;">4.1/5</span>
+                </div>
+              <span class="price">$10,195<span class="old-price"><i>M.R.P: $20,000</i></span></span> 
+            </div>
+            <div class="buttons">
+                <button class="box-btn"><a href="#" style="text-decoration: none; color: #fff;">View Details</a></button>
+                <button class="box-btn" style="background-color: #ff9900;">Add to Cart</button>
+                <button class="box-btn buy-now-btn" style="background-color: #049c11;"><a href="book-app.html" style="text-decoration: none; color: #fff;">Book Now</a></button>
+            </div>
+        </div>
+        <div class="container-sb">
+          <div class="box">
+              <img src="assets\images\image3.jpg" alt="placeholder image">
+              <div class="content">
+                  <h3 style="margin:-10px 0px 5px 0px;">Product Name</h3>
+                  <p style="margin-right:20px">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet, eius. Voluptatem laborum exercitationem non ratione rerum nesciunt architecto. Nobis temporibus, nisi magni molestias nesciunt incidunt neque obcaecati? Ipsam, impedit optio.<span><a href="#" style="text-decoration:none">...see more</a></span></p>
+                  <div class="ratings">
+                      <span class="star"></span>
+                      <span class="rate" style="font-weight: 600;color: #01195c;">4.5/5</span>
+                  </div>
+                <span class="price">$10,500<span class="old-price"><i>M.R.P: $23,000</i></span></span> 
+              </div>
+              <div class="buttons">
+                  <button class="box-btn"><a href="New-form.html" style="text-decoration: none; color: #fff;">View Details</a></button>
+                  <button class="box-btn" style="background-color: #ff9900;">Add to Cart</button>
+                  <button class="box-btn buy-now-btn" style="background-color: #049c11;"><a href="book-app.html" style="text-decoration: none; color: #fff;">Book Now</a></button>
+              </div>
+          </div>
+          <div class="container-sb">
+            <div class="box">
+                <img src="assets\images\image1.jpg" alt="placeholder image">
+                <div class="content">
+                    <h3 style="margin:-10px 0px 5px 0px;">Product Name</h3>
+                    <p style="margin-right:20px">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet, eius. Voluptatem laborum exercitationem non ratione rerum nesciunt architecto. Nobis temporibus, nisi magni molestias nesciunt incidunt neque obcaecati? Ipsam, impedit optio.<span><a href="#" style="text-decoration:none">...see more</a></span></p>
+                    <div class="ratings">
+                      <span class="star"></span>
+                      <span class="rate" style="font-weight: 600;color: #01195c;">4.0/5</span>
+                    </div>
+                  <span class="price">$10,190<span class="old-price"><i>M.R.P: $20,500</i></span></span> 
+                </div>
+                <div class="buttons">
+                    <button class="box-btn"><a href="New-form.html" style="text-decoration: none; color: #fff;">View Details</a></button>
+                    <button class="box-btn" style="background-color: #ff9900;">Add to Cart</button>
+                    <button class="box-btn buy-now-btn" style="background-color: #049c11;"><a href="book-app.html" style="text-decoration: none; color: #fff;">Book Now</a></button>
+                </div>
+            </div>
+  </div>
+  <!-- Pagination -->
+<div class="pagination">
+   <a href="#" class="prev">&laquo; Previous</a>
+   <a href="#" class="next"> 1</a>
+   <a href="#" class="next">2</a>
+   <a href="#" class="next">3</a>
+   <a href="#" class="next">4</a>
+   <a href="#" class="next">5</a>
+   <a href="#" class="next">Next &raquo;</a>
+</div>
+   <!--footer-->
+<footer>
+  <div class="container5">
+      <div class="logo2">
+          <img src="assets\images\logo.png" alt="Logo">
+      </div>
+      <div class="social-icons2">
+          <a href="#"><img src="assets\images\youtube.png" alt="youtube"></a>
+          <a href="#"><img src="assets\images\facebook.png" alt="Facebook"></a>
+          <a href="#"><img src="assets\images\whatsapp.png" alt="whatsapp"></a>
+          <a href="#"><img src="assets\images\instagram.png" alt="Instagram"></a>
+      </div>
+  </div>
+  <div class="menu">
+      <a href="landingPage.html">Home</a>
+      <a href="aboutPage.html">About</a>
+      <!-- <a href="productPage.html">Products</a> -->
+      <a href="latestUpdate.html">Latest Updates</a>
+      <a href="contactUs.html">Contact Us</a>
+  </div>
+  <hr>
+  <div class="copyright">
+      &copy; 2024 company LLC . All rights reserved.
+  </div>
+</footer>
+<!--footer-->
+  
+
+<script>
+    function toggleMenu() {
+        var menuToggle = document.querySelector('.menu-btn');
+        var navbar = document.querySelector('.nav-links');
+        menuToggle.classList.toggle('active');
+        navbar.classList.toggle('active');
+    }
+
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        dropdown.classList.toggle('active');
+    }
+
+    function showBox() {
+        var boxes = document.querySelectorAll('.box');
+        boxes.forEach(function(box) {
+            box.style.flexDirection = 'row';
+        });
+    }
+
+    function showList() {
+        var boxes = document.querySelectorAll('.box');
+        boxes.forEach(function(box) {
+            box.style.flexDirection = 'column';
+        });
+    }
+
+    function filterResults() {
+        var filter = document.getElementById('filters').value;
+        console.log('Filter applied:', filter);
+    }
+</script>
+</body>
+</html>
